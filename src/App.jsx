@@ -1,34 +1,38 @@
-import { useState, useEffect } from "react";
-import "./assets/css/App.css";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import NavBar from "./assets/components/NavBar";
 import Home from "./assets/pages/Home";
 import Favorites from "./assets/pages/Favorites";
-import NavBar from "./assets/components/NavBar";
+import MovieDetail from "./assets/pages/MovieDetail"; 
+import "./assets/css/App.css";
+import Footer from "./assets/components/Footer";
 
 function App() {
-  const [favorites, setFavorites] = useState(() => {
-    const savedFavs = localStorage.getItem("movie-favorites");
-    return savedFavs ? JSON.parse(savedFavs) : [];
-  });
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("movie-favorites", JSON.stringify(favorites));
+    const storedFavorites =
+      JSON.parse(localStorage.getItem("movie_favorites")) || [];
+    setFavorites(storedFavorites);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("movie_favorites", JSON.stringify(favorites));
   }, [favorites]);
 
   const toggleFavorite = (movie) => {
-    setFavorites((prevFavs) => {
-      const isFavorite = prevFavs.some((fav) => fav.imdbID === movie.imdbID);
-
-      if (isFavorite) {
-        return prevFavs.filter((fav) => fav.imdbID !== movie.imdbID);
+    setFavorites((prev) => {
+      const isFav = prev.some((fav) => fav.imdbID === movie.imdbID);
+      if (isFav) {
+        return prev.filter((fav) => fav.imdbID !== movie.imdbID);
       } else {
-        return [...prevFavs, movie];
+        return [...prev, movie];
       }
     });
   };
 
   return (
-    <div>
+    <div className="App">
       <NavBar />
       <main className="main-content">
         <Routes>
@@ -47,8 +51,18 @@ function App() {
               />
             }
           />
+          <Route
+            path="/movie/:id"
+            element={
+              <MovieDetail
+                favorites={favorites}
+                toggleFavorite={toggleFavorite}
+              />
+            }
+          />
         </Routes>
       </main>
+      <Footer/>
     </div>
   );
 }

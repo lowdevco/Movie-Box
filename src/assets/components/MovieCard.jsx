@@ -1,7 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; 
+import "../css/MovieCard.css";
 
 function MovieCard({ movie, isFavorite, toggleFavorite }) {
-  function onFavoriteClick() {
+  const navigate = useNavigate();
+
+
+  function onCardClick(e) {
+
+    if (!e.target.closest(".favorite-btn")) {
+      navigate(`/movie/${movie.imdbID}`); 
+    }
+  }
+
+  function onFavoriteClick(e) {
+    e.preventDefault();
+    e.stopPropagation(); 
     toggleFavorite(movie);
   }
 
@@ -11,29 +25,24 @@ function MovieCard({ movie, isFavorite, toggleFavorite }) {
       : "https://via.placeholder.com/300x450?text=No+Poster";
 
   return (
-    <div className="movie-card">
+    <div className="movie-card" onClick={onCardClick}>
       <div className="movie-poster">
         <img src={imageUrl} alt={movie.Title} />
-        <div className="movie-overlay">
-          <button
-            className="favorite-btn"
-            onClick={onFavoriteClick}
-            style={{
-              color: isFavorite ? "red" : "white",
-              fontSize: "1.5rem",
-              cursor: "pointer",
-              background: "transparent",
-              border: "none",
-            }}
-          >
-            {isFavorite ? "♥" : "♡"}
-          </button>
+        <div className="movie-info">
+          <h3>{movie.Title}</h3>
+          <p>{movie.Year}</p>
         </div>
       </div>
-      <div className="movie-info">
-        <h3>{movie.Title}</h3>
-        <p>{movie.Year}</p>
-      </div>
+
+      <button
+        className={`favorite-btn ${isFavorite ? "active" : ""}`}
+        onClick={onFavoriteClick}
+        title={isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+      >
+        <span style={{ color: isFavorite ? "#f43f5e" : "white" }}>
+          {isFavorite ? "♥" : "♡"}
+        </span>
+      </button>
     </div>
   );
 }

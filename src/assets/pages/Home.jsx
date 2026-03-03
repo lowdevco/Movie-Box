@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
+import "../css/Home.css"
 import { getDefaultMovies, searchMovies } from "../../Services/Api.js";
 
 function Home({ favorites, toggleFavorite }) {
