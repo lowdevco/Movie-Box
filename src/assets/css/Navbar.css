@@ -50,3 +50,12 @@
     padding: 1rem 1.5rem;
   }
 }
+
+@media (max-width:760px) {
+  .nav-mobile{
+    display:none;
+}
+ #home-mobile{
+  display:none;
+ }
+}

@@ -64,3 +64,16 @@
   margin: 0 auto;
   box-sizing: border-box;
 }
+
+@media (max-width:760px){
+  .search-form{
+    display: flex;
+    flex-direction: column;
+    gap:5px ;
+    border-radius:10px;
+  }
+
+  .search-form button{
+    border-radius:20px !important;
+  }
+}
