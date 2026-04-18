@@ -1,5 +1,5 @@
 <div align="center">
-# 🎬 MovieBox
+ 🎬 MovieBox
 
 MovieBox is a modern, responsive React application that allows users to search for movies, view detailed information, and save their favorite cinematic picks. Built with a sleek, glassmorphic UI, it delivers a premium user experience while interacting with a live movie database.
 
@@ -21,5 +21,5 @@ MovieBox is a modern, responsive React application that allows users to search f
 * **API:** [OMDb API](http://www.omdbapi.com/)
 
 <div align="center">
- # MovieBox - lowdevco
+  MovieBox - lowdevco
 </div>
