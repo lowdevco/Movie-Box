@@ -1,51 +1,142 @@
-.favorites {
-  padding: 2rem;
-  width: 100%;
-  box-sizing: border-box;
-}
+/* ════════════════════════════════
+   FAVORITES PAGE
+   ════════════════════════════════ */
 
-.favorites h2 {
-  margin-bottom: 2rem;
+/* ── Banner ── */
+.favorites-banner {
+  position: relative;
+  padding: 4.5rem 2rem 3.5rem;
   text-align: center;
-  font-size: 2.5rem;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
-.favorites-empty {
-  text-align: center;
-  padding: 4rem 2rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  margin: 2rem auto;
-  max-width: 600px;
+.banner-orb {
+  position: absolute;
+  top: -100px; left: 50%; transform: translateX(-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, rgba(124,58,237,0.2) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
 }
 
-.favorites-empty h2 {
+.banner-content { position: relative; z-index: 5; }
+
+.banner-badge {
+  display: inline-block;
+  background: rgba(248,113,113,0.12);
+  border: 1px solid rgba(248,113,113,0.3);
+  color: #fca5a5;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  padding: 0.3rem 0.9rem;
+  border-radius: var(--radius-pill);
   margin-bottom: 1rem;
-  font-size: 2rem;
-  color: #e50914;
 }
 
-.favorites-empty p {
-  color: #999;
-  font-size: 1.2rem;
-  line-height: 1.6;
+.banner-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
 }
 
-
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.banner-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
-.movies-grid > * {
-  animation: fadeIn 0.3s ease-out forwards;
+/* ── Grid Section ── */
+.favorites-grid-section {
+  padding: 0 2rem 4rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ── Empty State ── */
+.favorites-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem;
+  min-height: 60vh;
+  animation: fadeInUp 0.5s ease both;
+}
+
+.empty-icon-wrap {
+  position: relative;
+  width: 90px; height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.empty-heart {
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, #f87171 0%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 5;
+}
+
+.empty-pulse-ring {
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 2px solid rgba(248,113,113,0.4);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+.ring-2 {
+  inset: -18px;
+  border-color: rgba(248,113,113,0.2);
+  animation-delay: 0.5s;
+}
+
+.empty-title {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.empty-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 380px;
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.empty-cta {
+  display: inline-block;
+  background: var(--accent-gradient);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-accent);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  text-decoration: none;
+}
+
+.empty-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px var(--accent-glow);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .favorites-banner { padding: 3rem 1.5rem 2.5rem; }
+  .favorites-grid-section { padding: 0 1.25rem 3rem; }
 }
